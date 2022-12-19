@@ -16,3 +16,11 @@ h1 {
     margin-right: 15%;
 }
 
+#day1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    
+}
