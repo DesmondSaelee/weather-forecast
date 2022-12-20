@@ -10,9 +10,12 @@ h1 {
     background-color: rgb(66, 66, 218);
 }
 
-#main-card {
+.main-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
     width: 60%;
-    float: right;
+    /* float: right; */
     margin-right: 15%;
 }
 
