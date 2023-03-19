@@ -7,22 +7,24 @@ submitButton.addEventListener("click",function(){
     var previousSearch = JSON.parse(localStorage.getItem("weatherForecast")) || []
     previousSearch.push(cityname)
     localStorage.setItem("weatherForecast",JSON.stringify(previousSearch))
-    storeCity()
+    storeCity(cityname)
     getForecast(cityname)
 })
 
 
 
 function getForecast(cityname){
+  
   var URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityname}&appid=${apiKey}&units=imperial`
   fetch(URL)
   .then(response => response.json())
   .then(weatherApiData => {
     console.log(weatherApiData)
     var j = 1
-    for(let i=0;i<weatherApiData.list.length;i = i+8){
+    var cityname = document.getElementById("cityInput").value
+    for(let i=0;i<weatherApiData.list.length;i = i+7){
         var divid = "day"+j
-        $("#"+divid).children(".card-body").children(".card-title").text(weatherApiData.list[i].dt_txt)
+        $("#"+divid).children(".card-body").children(".card-title").text(cityname + " " + weatherApiData.list[i].dt_txt)
         $("#"+divid).children(".card-body").children("#image-"+j).attr("src", ` https://openweathermap.org/img/wn/${weatherApiData.list[i].weather[0].icon}@2x.png` )
         $("#"+divid).children(".card-body").children("#temp-"+j).text(`Temp: ${weatherApiData.list[i].main.temp}`)
         $("#"+divid).children(".card-body").children("#wind-"+j).text(`wind Speed: ${weatherApiData.list[i].wind.speed}`)
@@ -47,7 +49,7 @@ function storeCity(){
     var htmlCode = ""
     for(let i=0;i<previousSearch.length;i++){
         htmlCode += `
-        <li><button class="btn btn-primary searchCity">${previousSearch[i]}</button></li>
+        <li><button class="btn btn-secondary searchCity ">${previousSearch[i]}</button></li>
         `
     }
 
