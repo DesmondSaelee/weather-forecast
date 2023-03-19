@@ -2,6 +2,7 @@
 var apiKey = "9c26d768ead86b39036caf98fb0abbfa"
 var submitButton = document.querySelector("#submitButton");
 
+// add event listener to store city name in local storage
 submitButton.addEventListener("click",function(){
     var cityname = document.getElementById("cityInput").value
     var previousSearch = JSON.parse(localStorage.getItem("weatherForecast")) || []
@@ -12,7 +13,7 @@ submitButton.addEventListener("click",function(){
 })
 
 
-
+// build list of searched cities and making api call
 function getForecast(cityname){
   
   var URL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityname}&appid=${apiKey}&units=imperial`
@@ -44,6 +45,7 @@ function getForecast(cityname){
   })
 }
 
+// function to store city 
 function storeCity(){
     var previousSearch = JSON.parse(localStorage.getItem("weatherForecast")) || []
     var htmlCode = ""
@@ -61,6 +63,7 @@ function storeCity(){
 storeCity()
 
 
+// function to targer the city clicked on
 function getForecastCity(event){
     var city = event.target.innerText
     console.log(city)
