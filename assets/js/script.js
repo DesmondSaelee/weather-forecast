@@ -21,14 +21,14 @@ function getForecast(cityname){
   .then(weatherApiData => {
     console.log(weatherApiData)
     var j = 1
-    var cityname = document.getElementById("cityInput").value
+    
     for(let i=0;i<weatherApiData.list.length;i = i+7){
         var divid = "day"+j
         $("#"+divid).children(".card-body").children(".card-title").text(cityname + " " + weatherApiData.list[i].dt_txt)
         $("#"+divid).children(".card-body").children("#image-"+j).attr("src", ` https://openweathermap.org/img/wn/${weatherApiData.list[i].weather[0].icon}@2x.png` )
-        $("#"+divid).children(".card-body").children("#temp-"+j).text(`Temp: ${weatherApiData.list[i].main.temp}`)
-        $("#"+divid).children(".card-body").children("#wind-"+j).text(`wind Speed: ${weatherApiData.list[i].wind.speed}`)
-        $("#"+divid).children(".card-body").children("#humidity-"+j).text(` humidity-: ${weatherApiData.list[i].main.humidity}`)
+        $("#"+divid).children(".card-body").children("#temp-"+j).text(`Temp: ${weatherApiData.list[i].main.temp} °F`)
+        $("#"+divid).children(".card-body").children("#wind-"+j).text(`wind Speed: ${weatherApiData.list[i].wind.speed} MPH`)
+        $("#"+divid).children(".card-body").children("#humidity-"+j).text(` humidity-: ${weatherApiData.list[i].main.humidity} % `)
 
     //    document.getElementById("date-"+j).textContent =weatherApiData.list[i].dt_txt
 
